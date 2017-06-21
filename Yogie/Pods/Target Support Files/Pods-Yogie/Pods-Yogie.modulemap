@@ -1,0 +1,6 @@
+framework module Pods_Yogie {
+  umbrella header "Pods-Yogie-umbrella.h"
+
+  export *
+  module * { export * }
+}
