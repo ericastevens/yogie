@@ -103,9 +103,9 @@ class UploadJourneyStepViewController: UIViewController, UITextFieldDelegate {
             
             if let imageData = UIImageJPEGRepresentation(imageToUploadImageView.image!, 0.6) {
                 
-                imagesStorageRef.putData(imageData, metadata: metadata, completion: { (metadata, error) in
+                imagesStorageRef.putData(imageData, metadata: metadata, completion: { (metadata: StorageMetadata?, error: Error?) in
                     if error != nil {
-                        print(error)
+                        print(error!)
                         return
                     }
                 })
@@ -123,9 +123,10 @@ class UploadJourneyStepViewController: UIViewController, UITextFieldDelegate {
                                                       "timestamp": timestamp,
                                                       "asana": "\(asanaTitle)"]
             
-            postRef.setValue(userTimelinePostDict) { (error, ref) in
+        
+            postRef.setValue(userTimelinePostDict) { (error: Error?, ref: DatabaseReference?) in
                 if error != nil {
-                    print(error)
+                    print(error!)
                     return
                 }
                 self.dismiss(animated: true, completion: nil)
@@ -157,7 +158,8 @@ class UploadJourneyStepViewController: UIViewController, UITextFieldDelegate {
     // MARK: UITextFieldDelegate Methods
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        print("TextField did end editing method called\(textField.text)")
+        guard let text = textField.text else { return }
+        print("TextField did end editing method called\(text)")
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

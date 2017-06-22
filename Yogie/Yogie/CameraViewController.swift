@@ -188,7 +188,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     // MARK: Live Photo Delegate Methods
     func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
         guard error == nil, let photoSampleBuff = photoSampleBuffer else {
-            print("Error capturing live photo: \(error)")
+            print("Error capturing live photo: \(error!)")
             return
         }
         
@@ -198,7 +198,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingLivePhotoToMovieFileAt outputFileURL: URL, duration: CMTime, photoDisplay photoDisplayTime: CMTime, resolvedSettings: AVCaptureResolvedPhotoSettings, error: Error?) {
         guard error == nil else {
-            print("Error capturing live photo: \(error)")
+            print("Error capturing live photo: \(error!)")
             return
         }
         
@@ -214,7 +214,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     //Occurs last. This is the point at which we handle the results of the photo capture
     func capture(_ captureOutput: AVCapturePhotoOutput, didFinishCaptureForResolvedSettings resolvedSettings: AVCaptureResolvedPhotoSettings, error: Error?) {
         guard error == nil else {
-            print("Error in capture process: \(error)")
+            print("Error in capture process: \(error!)")
             return
         }
         

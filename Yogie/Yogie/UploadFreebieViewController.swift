@@ -107,9 +107,10 @@ class UploadFreebieViewController: UIViewController {
         metadata.cacheControl = "public,max-age=300"
         
         if let imageData = UIImageJPEGRepresentation(imageToUploadImageView.image!, 0.6) {
-            imagesStorageRef.putData(imageData, metadata: metadata, completion: { (metadata, error) in
+            
+            imagesStorageRef.putData(imageData, metadata: metadata, completion: { (metadata: StorageMetadata?, error: Error?) in
                 if error != nil {
-                    print(error)
+                    print(error!)
                     return
                 }
             })
@@ -123,10 +124,9 @@ class UploadFreebieViewController: UIViewController {
         let userTimelinePostDict: [String:Any] = ["type" : PostType.freebie.rawValue,
         "timestamp": NSDate.timeIntervalSinceReferenceDate]
 
-        
-        freebiePostRef.setValue(userTimelinePostDict) { (error, ref) in
+        freebiePostRef.setValue(userTimelinePostDict) { (error: Error?, ref: DatabaseReference?) in
             if error != nil {
-                print(error)
+                print(error!)
                 return
             }
             self.dismiss(animated: true, completion: nil)

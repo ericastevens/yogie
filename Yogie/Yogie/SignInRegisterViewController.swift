@@ -348,7 +348,8 @@ class SignInRegisterViewController: UIViewController, UITextFieldDelegate {
     // MARK: UITextFieldDelegate Methods
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        print("TextField did end editing method called\(textField.text)")
+        guard let text = textField.text else { return }
+        print("TextField did end editing method called\(text)")
     }
   
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
