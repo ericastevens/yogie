@@ -47,8 +47,8 @@ class AsanaCollectionViewCell: UICollectionViewCell {
         namaskarUpvoteButtonContainerView.addSubview(namaskarUpvoteCountLabel)
         commentButtonContainerView.addSubview(commentButton)
         commentButtonContainerView.addSubview(commentButtonTitleLabel)
-        commentButton.addSubview(leftSeparatorView)
-        commentButton.addSubview(rightSeparatorView)
+        commentButtonContainerView.addSubview(leftSeparatorView)
+        commentButtonContainerView.addSubview(rightSeparatorView)
         commentButtonContainerView.addSubview(toggleCommentsViewOverlayButton)
         commentButtonContainerView.bringSubview(toFront: toggleCommentsViewOverlayButton)
         
@@ -84,8 +84,9 @@ class AsanaCollectionViewCell: UICollectionViewCell {
             namaskarUpvoteButtonContainerView.leadingAnchor.constraint(equalTo: engagementButtonsContainerView.leadingAnchor),
             namaskarUpvoteButtonContainerView.centerYAnchor.constraint(equalTo: engagementButtonsContainerView.centerYAnchor),
 
-            namaskarUpvoteButton.widthAnchor.constraint(equalToConstant: 32),
-            namaskarUpvoteButton.heightAnchor.constraint(equalToConstant: 32),
+           
+            namaskarUpvoteButton.heightAnchor.constraint(equalTo: namaskarUpvoteButtonContainerView.heightAnchor, multiplier: 0.7),
+             namaskarUpvoteButton.widthAnchor.constraint(equalTo: namaskarUpvoteButton.heightAnchor),
             namaskarUpvoteButton.centerYAnchor.constraint(equalTo: engagementButtonsContainerView.centerYAnchor),
             namaskarUpvoteButton.leadingAnchor.constraint(equalTo: namaskarUpvoteButtonContainerView.leadingAnchor, constant: 8.0),
             
@@ -107,7 +108,7 @@ class AsanaCollectionViewCell: UICollectionViewCell {
             
             rightSeparatorView.widthAnchor.constraint(equalToConstant: 0.5),
             rightSeparatorView.heightAnchor.constraint(equalTo: commentButtonContainerView.heightAnchor, multiplier: 0.4),
-            rightSeparatorView.trailingAnchor.constraint(equalTo: commentButtonContainerView.trailingAnchor),
+            rightSeparatorView.trailingAnchor.constraint(equalTo: commentButtonContainerView.trailingAnchor, constant: 4.0),
             rightSeparatorView.centerYAnchor.constraint(equalTo: commentButtonTitleLabel.centerYAnchor),
             
             
@@ -116,8 +117,9 @@ class AsanaCollectionViewCell: UICollectionViewCell {
             toggleCommentsViewOverlayButton.leadingAnchor.constraint(equalTo: commentButtonContainerView.leadingAnchor),
             toggleCommentsViewOverlayButton.centerYAnchor.constraint(equalTo: commentButtonContainerView.centerYAnchor),
             
-            commentButton.widthAnchor.constraint(equalToConstant: 32),
-            commentButton.heightAnchor.constraint(equalToConstant: 32),
+            
+            commentButton.heightAnchor.constraint(equalTo: commentButtonContainerView.heightAnchor, multiplier: 0.7),
+            commentButton.widthAnchor.constraint(equalTo: commentButton.heightAnchor),
             commentButton.centerYAnchor.constraint(equalTo: commentButtonTitleLabel.centerYAnchor),
             commentButton.leadingAnchor.constraint(equalTo: commentButtonContainerView.leadingAnchor, constant: 4.0),
             
@@ -136,8 +138,9 @@ class AsanaCollectionViewCell: UICollectionViewCell {
             sharePostOverlayButton.leadingAnchor.constraint(equalTo: shareButtonContainerView.leadingAnchor),
             sharePostOverlayButton.centerYAnchor.constraint(equalTo: shareButtonContainerView.centerYAnchor),
             
-            shareButton.widthAnchor.constraint(equalToConstant: 32),
-            shareButton.heightAnchor.constraint(equalToConstant: 32),
+            
+            shareButton.heightAnchor.constraint(equalTo: shareButtonContainerView.heightAnchor, multiplier: 0.7),
+            shareButton.widthAnchor.constraint(equalTo: shareButton.heightAnchor),
             shareButton.centerYAnchor.constraint(equalTo: shareButtonTitleLabel.centerYAnchor),
             shareButton.leadingAnchor.constraint(equalTo: shareButtonContainerView.leadingAnchor, constant: 8.0),
             
@@ -175,21 +178,21 @@ class AsanaCollectionViewCell: UICollectionViewCell {
     lazy var namaskarUpvoteButtonContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .black
+        view.backgroundColor = .clear
         return view
     }()
     
     lazy var commentButtonContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .black
+        view.backgroundColor = .clear
         return view
     }()
     
     lazy var shareButtonContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .black
+        view.backgroundColor = .clear
         return view
     }()
     

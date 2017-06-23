@@ -21,19 +21,13 @@ class NewsfeedTableViewCell: UITableViewCell {
     
     weak var delegate: NewsfeedCellProtocol?
     var row: Int?
-//    var path: IndexPath!
 
     @IBOutlet weak var postImageView: UIImageView!
-    
     @IBOutlet weak var postCreatorInfoContainerView: UIView!
-    
     @IBOutlet weak var engagementButtonsContainerView: UIView!
     @IBOutlet weak var userProfileImageView: UIImageView!
-    
     @IBOutlet weak var usernameLabel: UILabel!
-    
     @IBOutlet weak var timestampLabel: UILabel!
-    
     @IBOutlet weak var segueToUserProfileButton: UIButton!
     
     @IBAction func segueToUserProfile(_ sender: AnyObject) {
@@ -43,6 +37,7 @@ class NewsfeedTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        engagementButtonsContainerView.backgroundColor = .black
         
         self.contentView.backgroundColor = .black
         userProfileImageView.layer.cornerRadius = 25.5
@@ -51,7 +46,7 @@ class NewsfeedTableViewCell: UITableViewCell {
         
         usernameLabel.font = UIFont.systemFont(ofSize: 18, weight: UIFontWeightThin)
         timestampLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFontWeightThin)
-      
+        
         setupViewHierarchy()
         configureConstraints()
     }
@@ -66,8 +61,8 @@ class NewsfeedTableViewCell: UITableViewCell {
         
         commentButtonContainerView.addSubview(commentButton)
         commentButtonContainerView.addSubview(commentButtonTitleLabel)
-        commentButton.addSubview(leftSeparatorView)
-        commentButton.addSubview(rightSeparatorView)
+        commentButtonContainerView.addSubview(leftSeparatorView)
+        commentButtonContainerView.addSubview(rightSeparatorView)
         commentButtonContainerView.addSubview(toggleCommentsViewOverlayButton)
         commentButtonContainerView.bringSubview(toFront: toggleCommentsViewOverlayButton)
         
@@ -87,26 +82,20 @@ class NewsfeedTableViewCell: UITableViewCell {
             engagementButtonsContainerView.topAnchor.constraint(equalTo: postImageView.bottomAnchor),
             engagementButtonsContainerView.bottomAnchor.constraint(equalTo: cellSeparatorView.topAnchor),
 
-
             namaskarUpvoteButtonContainerView.widthAnchor.constraint(equalTo: engagementButtonsContainerView.widthAnchor, multiplier: 1/3),
             namaskarUpvoteButtonContainerView.heightAnchor.constraint(equalTo: engagementButtonsContainerView.heightAnchor),
             namaskarUpvoteButtonContainerView.leadingAnchor.constraint(equalTo: engagementButtonsContainerView.leadingAnchor),
             namaskarUpvoteButtonContainerView.centerYAnchor.constraint(equalTo: engagementButtonsContainerView.centerYAnchor),
-            
-//            updateNamaskarOverlayButton.widthAnchor.constraint(equalTo: namaskarUpvoteButtonContainerView.widthAnchor),
-//            updateNamaskarOverlayButton.heightAnchor.constraint(equalTo: namaskarUpvoteButtonContainerView.heightAnchor),
-//            updateNamaskarOverlayButton.leadingAnchor.constraint(equalTo: namaskarUpvoteButtonContainerView.leadingAnchor),
-//            updateNamaskarOverlayButton.centerYAnchor.constraint(equalTo: namaskarUpvoteButtonContainerView.centerYAnchor),
-//            
-            namaskarUpvoteButton.widthAnchor.constraint(equalToConstant: 32),
-            namaskarUpvoteButton.heightAnchor.constraint(equalToConstant: 32),
+           
+            namaskarUpvoteButton.widthAnchor.constraint(equalTo: engagementButtonsContainerView.heightAnchor, multiplier: 0.8),
+            namaskarUpvoteButton.heightAnchor.constraint(equalTo: namaskarUpvoteButton.widthAnchor),
             namaskarUpvoteButton.centerYAnchor.constraint(equalTo: engagementButtonsContainerView.centerYAnchor),
-            namaskarUpvoteButton.leadingAnchor.constraint(equalTo: namaskarUpvoteButtonContainerView.leadingAnchor, constant: 8.0),
+            namaskarUpvoteButton.leadingAnchor.constraint(equalTo: namaskarUpvoteButtonContainerView.leadingAnchor, constant: 12.0),
             
             namaskarUpvoteCountLabel.widthAnchor.constraint(equalTo: namaskarUpvoteButtonContainerView.widthAnchor, multiplier: 0.5),
             namaskarUpvoteCountLabel.centerYAnchor.constraint(equalTo: namaskarUpvoteButton.centerYAnchor),
             namaskarUpvoteCountLabel.trailingAnchor.constraint(equalTo: namaskarUpvoteButtonContainerView.trailingAnchor, constant: -8.0),
-            namaskarUpvoteCountLabel.leadingAnchor.constraint(equalTo: namaskarUpvoteButton.trailingAnchor, constant: 4.0),
+            namaskarUpvoteCountLabel.leadingAnchor.constraint(equalTo: namaskarUpvoteButton.trailingAnchor),
             
             commentButtonContainerView.widthAnchor.constraint(equalTo: namaskarUpvoteButtonContainerView.widthAnchor),
             commentButtonContainerView.heightAnchor.constraint(equalTo: namaskarUpvoteButtonContainerView.heightAnchor),
@@ -116,13 +105,13 @@ class NewsfeedTableViewCell: UITableViewCell {
             leftSeparatorView.widthAnchor.constraint(equalToConstant: 0.5),
             leftSeparatorView.heightAnchor.constraint(equalTo: commentButtonContainerView.heightAnchor, multiplier: 0.4),
             leftSeparatorView.leadingAnchor.constraint(equalTo: commentButtonContainerView.leadingAnchor),
-            leftSeparatorView.centerYAnchor.constraint(equalTo: commentButtonTitleLabel.centerYAnchor),
+            leftSeparatorView.centerYAnchor.constraint(equalTo: engagementButtonsContainerView.centerYAnchor),
             
             
             rightSeparatorView.widthAnchor.constraint(equalToConstant: 0.5),
             rightSeparatorView.heightAnchor.constraint(equalTo: commentButtonContainerView.heightAnchor, multiplier: 0.4),
             rightSeparatorView.trailingAnchor.constraint(equalTo: commentButtonContainerView.trailingAnchor),
-            rightSeparatorView.centerYAnchor.constraint(equalTo: commentButtonTitleLabel.centerYAnchor),
+            rightSeparatorView.centerYAnchor.constraint(equalTo: engagementButtonsContainerView.centerYAnchor),
             
             
             toggleCommentsViewOverlayButton.widthAnchor.constraint(equalTo: commentButtonContainerView.widthAnchor),
@@ -130,15 +119,15 @@ class NewsfeedTableViewCell: UITableViewCell {
             toggleCommentsViewOverlayButton.leadingAnchor.constraint(equalTo: commentButtonContainerView.leadingAnchor),
             toggleCommentsViewOverlayButton.centerYAnchor.constraint(equalTo: commentButtonContainerView.centerYAnchor),
             
-            commentButton.widthAnchor.constraint(equalToConstant: 32),
-            commentButton.heightAnchor.constraint(equalToConstant: 32),
-            commentButton.centerYAnchor.constraint(equalTo: commentButtonTitleLabel.centerYAnchor),
-            commentButton.leadingAnchor.constraint(equalTo: commentButtonContainerView.leadingAnchor, constant: 4.0),
+            commentButton.widthAnchor.constraint(equalTo: commentButtonContainerView.heightAnchor, multiplier: 0.8),
+            commentButton.heightAnchor.constraint(equalTo: commentButton.widthAnchor),
+            commentButton.centerYAnchor.constraint(equalTo: commentButtonContainerView.centerYAnchor),
+            commentButton.leadingAnchor.constraint(equalTo: commentButtonContainerView.leadingAnchor, constant: 12.0),
             
             commentButtonTitleLabel.widthAnchor.constraint(equalTo: commentButtonContainerView.widthAnchor, multiplier: 0.6),
-            commentButtonTitleLabel.centerYAnchor.constraint(equalTo: namaskarUpvoteCountLabel.centerYAnchor),
-            commentButtonTitleLabel.leadingAnchor.constraint(equalTo: commentButton.trailingAnchor, constant: 4.0),
-            commentButtonTitleLabel.trailingAnchor.constraint(equalTo: commentButtonContainerView.trailingAnchor, constant: -4.0),
+            commentButtonTitleLabel.centerYAnchor.constraint(equalTo: commentButton.centerYAnchor),
+            commentButtonTitleLabel.leadingAnchor.constraint(equalTo: commentButton.trailingAnchor),
+            commentButtonTitleLabel.trailingAnchor.constraint(equalTo: commentButtonContainerView.trailingAnchor, constant: 4.0),
             
             shareButtonContainerView.widthAnchor.constraint(equalTo: namaskarUpvoteButtonContainerView.widthAnchor),
             shareButtonContainerView.heightAnchor.constraint(equalTo: namaskarUpvoteButtonContainerView.heightAnchor),
@@ -150,14 +139,14 @@ class NewsfeedTableViewCell: UITableViewCell {
             sharePostOverlayButton.leadingAnchor.constraint(equalTo: shareButtonContainerView.leadingAnchor),
             sharePostOverlayButton.centerYAnchor.constraint(equalTo: shareButtonContainerView.centerYAnchor),
             
-            shareButton.widthAnchor.constraint(equalToConstant: 32),
-            shareButton.heightAnchor.constraint(equalToConstant: 32),
-            shareButton.centerYAnchor.constraint(equalTo: shareButtonTitleLabel.centerYAnchor),
-            shareButton.leadingAnchor.constraint(equalTo: shareButtonContainerView.leadingAnchor, constant: 8.0),
+            shareButton.widthAnchor.constraint(equalTo: shareButtonContainerView.heightAnchor, multiplier: 0.8),
+            shareButton.heightAnchor.constraint(equalTo: shareButton.widthAnchor),
+            shareButton.centerYAnchor.constraint(equalTo: shareButtonContainerView.centerYAnchor),
+            shareButton.leadingAnchor.constraint(equalTo: shareButtonContainerView.leadingAnchor, constant: 14.0),
             
             shareButtonTitleLabel.widthAnchor.constraint(equalTo: shareButtonContainerView.widthAnchor, multiplier: 0.5),
-            shareButtonTitleLabel.centerYAnchor.constraint(equalTo: namaskarUpvoteCountLabel.centerYAnchor),
-            shareButtonTitleLabel.leadingAnchor.constraint(equalTo: shareButton.trailingAnchor, constant: 4.0),
+            shareButtonTitleLabel.centerYAnchor.constraint(equalTo: shareButton.centerYAnchor),
+            shareButtonTitleLabel.leadingAnchor.constraint(equalTo: shareButton.trailingAnchor),
             shareButtonTitleLabel.trailingAnchor.constraint(equalTo: shareButtonContainerView.trailingAnchor, constant: -8.0),
             
             cellSeparatorView.widthAnchor.constraint(equalTo: self.contentView.widthAnchor),
@@ -172,21 +161,21 @@ class NewsfeedTableViewCell: UITableViewCell {
     lazy var namaskarUpvoteButtonContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .black
+        view.backgroundColor = .clear
         return view
     }()
     
     lazy var commentButtonContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .black
+        view.backgroundColor = .clear
         return view
     }()
     
     lazy var shareButtonContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .black
+        view.backgroundColor = .clear
         return view
     }()
     
@@ -215,8 +204,6 @@ class NewsfeedTableViewCell: UITableViewCell {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .white
-        button.layer.cornerRadius = 16
-        button.layer.masksToBounds = false
         button.clipsToBounds = true
         button.contentMode = .scaleAspectFit
         button.setImage(#imageLiteral(resourceName: "Namaste"), for: .normal)
@@ -229,7 +216,7 @@ class NewsfeedTableViewCell: UITableViewCell {
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightThin)
         label.adjustsFontSizeToFitWidth = true
-        label.text = "356,962"
+        label.text = "364,757"
         label.textAlignment = .left
         return label
     }()

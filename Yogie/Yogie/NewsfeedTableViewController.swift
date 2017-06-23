@@ -317,6 +317,13 @@ class NewsfeedTableViewController: UITableViewController, UICollectionViewDelega
                     item.timestampLabel.text = postDateString
                     item.namaskarUpvoteButton.tag = indexPath.item
                     item.namaskarUpvoteButton.addTarget(self, action: #selector(toggleNamaskar(_:)), for: .touchUpInside)
+                    
+                    item.namaskarUpvoteButton.layer.cornerRadius = item.namaskarUpvoteButton.frame.size.width / 2
+                    item.namaskarUpvoteButton.layer.masksToBounds = true
+                    item.shareButton.layer.cornerRadius = item.shareButton.frame.size.width / 2
+                    item.shareButton.layer.masksToBounds = true
+                    item.commentButton.layer.cornerRadius = item.commentButton.frame.size.width / 2
+                    item.commentButton.layer.masksToBounds = true                    
                 }
             }
         }
@@ -384,6 +391,14 @@ class NewsfeedTableViewController: UITableViewController, UICollectionViewDelega
             
             cell.namaskarUpvoteButton.tag = indexPath.row
             cell.namaskarUpvoteButton.addTarget(self, action: #selector(toggleNamaskar(_:)), for: .touchUpInside)
+            cell.namaskarUpvoteButton.layer.cornerRadius = cell.namaskarUpvoteButton.frame.size.width / 2
+            cell.namaskarUpvoteButton.layer.masksToBounds = true
+            cell.shareButton.layer.cornerRadius = cell.shareButton.frame.size.width / 2
+            cell.shareButton.layer.masksToBounds = true
+            cell.commentButton.layer.cornerRadius = cell.commentButton.frame.size.width / 2
+            cell.commentButton.layer.masksToBounds = true
+            
+            
             
             if let imageInfoTuple = post.imageData.first {
                 
@@ -405,6 +420,8 @@ class NewsfeedTableViewController: UITableViewController, UICollectionViewDelega
             cell.row = indexPath.row
             
             cell.usernameLabel.text = post.user.username
+            
+            
             if let imageInfoTuple = post.imageData.first {
                 
                 let timeInterval = TimeInterval(imageInfoTuple.0)
